@@ -8,26 +8,21 @@ import Container from "@material-ui/core/Container";
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { Paper, CardActionArea, CardMedia, Grid, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button, CircularProgress } from "@material-ui/core";
-// import cblogo from "./cblogo.PNG";
-import image from "./bg.png";
+import { Paper, CardActionArea, CardMedia, Grid, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button, CircularProgress, Link } from "@material-ui/core";
 import { DropzoneArea } from 'material-ui-dropzone';
-import { common } from '@material-ui/core/colors';
 import Clear from '@material-ui/icons/Clear';
-
-
-
+import image from "./bg.png";
+import axios from "axios";
 
 const ColorButton = withStyles((theme) => ({
   root: {
-    color: theme.palette.getContrastText(common.white),
-    backgroundColor: common.white,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+    backgroundColor: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: '#ffffff7a',
+      backgroundColor: theme.palette.primary.dark,
     },
   },
 }))(Button);
-const axios = require("axios").default;
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -37,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     width: "-webkit-fill-available",
     borderRadius: "15px",
     padding: "15px 22px",
-    color: "#000000a6",
+    color: theme.palette.text.secondary,
     fontSize: "20px",
     fontWeight: 900,
   },
@@ -104,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '22px',
     backgroundColor: 'transparent !important',
     borderColor: 'transparent !important',
-    color: '#000000a6 !important',
+    color: theme.palette.text.secondary,
     fontWeight: 'bolder',
     padding: '1px 24px 1px 16px',
   },
@@ -112,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     backgroundColor: 'transparent !important',
     borderColor: 'transparent !important',
-    color: '#000000a6 !important',
+    color: theme.palette.text.secondary,
     fontWeight: 'bolder',
     padding: '1px 24px 1px 16px',
   },
@@ -128,21 +123,49 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   detail: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.default,
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
   },
   appbar: {
-    background: '#be6a77',
+    // background: theme.palette.primary.main,
+    background: '#ff69b4', // Change the background color to your desired color
     boxShadow: 'none',
-    color: 'white'
+    color: theme.palette.text.secondary,
   },
+  // mainContainer: {
+  //   backgroundImage: `url(${image})`,
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundPosition: 'center',
+  //   backgroundSize: 'cover',
+  //   height: "93vh",
+  //   marginTop: "8px",
+  //   backgroundColor: 'white', // Change the background color to your desired color
+  // },
   loader: {
-    color: '#be6a77 !important',
-  }
+    color: theme.palette.primary.main,
+  },
+  footer: {
+    // background: theme.palette.primary.main,
+    background: '#ff69b4', // Change the background color to your desired color
+    padding: "1rem",
+    marginTop: "auto",
+    textAlign: "center",
+  },
+  footerText: {
+    color: theme.palette.text.secondary,
+  },
+  footerLink: {
+    color: theme.palette.text.secondary,
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
 }));
+
 export const ImageUpload = () => {
   const classes = useStyles();
   const [selectedFile, setSelectedFile] = useState();
@@ -213,11 +236,10 @@ export const ImageUpload = () => {
     <React.Fragment>
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h5" noWrap style={{ fontWeight: 'bold' }}>
             Potato Disease Classification
           </Typography>
           <div className={classes.grow} />
-          {/* <Avatar src={cblogo}></Avatar> */}
         </Toolbar>
       </AppBar>
       <Container maxWidth={false} className={classes.mainContainer} disableGutters={true}>
@@ -284,6 +306,14 @@ export const ImageUpload = () => {
             </Grid>}
         </Grid >
       </Container >
+      <footer className={classes.footer}>
+        <Typography variant="body2" className={classes.footerText}>
+          © {new Date().getFullYear()} Potato Disease Classification | Developed by {" "}
+          <a href="https://github.com/harshiitsingh" target="_blank" rel="noopener noreferrer" className={classes.footerLink}>
+            Harshit Singh
+          </a>
+        </Typography>
+      </footer>
     </React.Fragment >
   );
 };
