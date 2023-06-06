@@ -32,7 +32,8 @@ def read_file_as_image(data) -> np.ndarray:
     # image = np.array(Image.open(BytesIO(data)))
     image = Image.open(BytesIO(data))
     image = image.resize((224, 224))  # Resize image to (224, 224)
-    image = np.array(image) / 255.0  # Normalize image pixels
+    image = np.array(image)
+    # image = np.array(image) / 255.0  # Normalize image pixels
     return image
 
 @app.post("/predict")
