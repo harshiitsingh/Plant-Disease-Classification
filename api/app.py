@@ -11,6 +11,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -20,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model("New folder\models\potato-disease.h5")
+MODEL = tf.keras.models.load_model("New folder\\api\\models\\potato-disease.h5")
 
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
