@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model("potato-disease.h5")
+MODEL = tf.keras.models.load_model("api\potato-disease.h5")
 
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
