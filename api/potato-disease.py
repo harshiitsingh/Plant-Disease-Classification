@@ -2,8 +2,9 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+import os
 
-MODEL = tf.keras.models.load_model("potato-disease.h5")
+MODEL = tf.keras.models.load_model("api/potato-disease.h5")
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
 st.title("Potato Disease Prediction")
